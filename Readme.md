@@ -164,7 +164,12 @@ And run following command to build a docker for this go-gin-web-application
 ```
 docker build -t golang-gin-ecs-fargate .
 ```
+
+Then, create ECR with awscli:
+```
 aws ecr create-repository --repository-name golang-gin-ecs-fargate
+```
+And you will see some output message like:
 ```
 {
     "repository": {
@@ -175,6 +180,9 @@ aws ecr create-repository --repository-name golang-gin-ecs-fargate
         "repositoryUri": "384612698411.dkr.ecr.ap-southeast-1.amazonaws.com/golang-gin-ecs-fargate"
     }
 }
+```
+Then you can find your ECR Uri.
+Before you doing any docker command, you have to get ECR login with this awscli command
 ```
 aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 384612698411.dkr.ecr.ap-southeast-1.amazonaws.com/golang-gin-ecs-fargate
 ```
